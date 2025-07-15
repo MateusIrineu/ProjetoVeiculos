@@ -1,4 +1,4 @@
-import veiculos from "../../../config/database";
+import veiculos from "../../../config/database.js";
 
 class VeiculoModel {
 
@@ -17,14 +17,16 @@ class VeiculoModel {
     }
 
     static atualizar(id, novoModelo, novaMarca, novoAno, novaPlaca, novaCor) {
-        const veiculo = veiculos.find(veiculo => veiculo.id === id)
-
+        const veiculo = veiculos.find((veiculo) => veiculo.id === id)
+        if (!veiculo) {
+            return null;
+        }
         veiculo.modelo = novoModelo || veiculo.modelo;
         veiculo.marca = novaMarca || veiculo.marca;
         veiculo.ano = novoAno || veiculo.ano;
         veiculo.placa = novaPlaca || veiculo.placa;
         veiculo.cor = novaCor || veiculo.cor;
-        return veiculo
+        return veiculo;
     }
 
     static deletarPorID(id) {

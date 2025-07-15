@@ -1,5 +1,5 @@
 import express from 'express'
-import VeiculoController from '../controllers/veiculo.controller'
+import VeiculoController from '../controllers/veiculo.controller.js';
 
 const router = express.Router()
 
@@ -13,6 +13,6 @@ router.patch("/veiculo/atualizar/:id", VeiculoController.atualizar);
 
 router.delete("/veiculo/deletar/:id", VeiculoController.deletarPorId)
 
-router.deleter("/veiculos", VeiculoController.deletarTodos)
+router.delete("/veiculos", VeiculoController.deletarTodos)
 
 export default router

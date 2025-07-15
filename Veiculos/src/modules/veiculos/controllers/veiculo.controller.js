@@ -1,4 +1,4 @@
-import VeiculoModel from "../models/veiculos.model";
+import VeiculoModel from "../models/veiculos.model.js";
 
 class VeiculoController {
     static cadastrar(req, res) {
@@ -47,8 +47,12 @@ class VeiculoController {
         try {
             const { novoModelo, novaMarca, novoAno, novaPlaca, novaCor } = req.body
             const id = parseInt(req.params.id)
-            VeiculoModel.atualizar(id, novoModelo, novaMarca, novoAno, novaPlaca, novaCor)
-            res.status(200).json({ message: 'Veículo atualizado com sucesso!' })
+            const veiculo = VeiculoModel.listarPorId(id)
+            if (!veiculo) {
+                return res.status(404).json({ message: 'Veículo não encontrado' })
+            }
+            const veiculoAtualizado = VeiculoModel.atualizar(id, novoModelo, novaMarca, novoAno, novaPlaca, novaCor)
+            res.status(200).json({ message: 'Veículo atualizado com sucesso!', veiculo: veiculoAtualizado })
         } catch (error) {
             res.status(500).json({ message: 'Erro interno do servidor. Por favor, tente mais tarde', erro: error.message })
         }

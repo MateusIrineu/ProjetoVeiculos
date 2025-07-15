@@ -1,6 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import routeVeiculo from "./src/modules/veiculos/routes/veiculos.route.js"
+import routeVeiculo from './Veiculos/src/modules/veiculos/routes/veiculos.route.js'
+
+dotenv.config()
 
 const port = process.env.PORTA
 
@@ -11,5 +13,5 @@ app.use(express.json())
 app.use(routeVeiculo)
 
 app.listen(port, () => {
-    console.log(`Rodandoem http://localhost:${port}`)
+    console.log(`Rodando em http://localhost:${port}`)
 })
